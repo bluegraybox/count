@@ -1,11 +1,9 @@
-/* This counts the number of occurrences of each unique line of input,
- * and outputs each prefixed by its count.
- * Like `sort | uniq -c`.
- */
+// This counts the number of occurrences of each unique line of input,
+// and outputs each prefixed by its count.
+// Like `sort | uniq -c`.
 
-use std::io;
 use std::collections::HashMap;
-
+use std::io;
 
 fn main() {
     let mut counts: HashMap<String, usize> = HashMap::new();
