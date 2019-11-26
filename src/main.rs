@@ -1,3 +1,8 @@
+/* This counts the number of occurrences of each unique line of input,
+ * and outputs each prefixed by its count.
+ * Like `sort | uniq -c`.
+ */
+
 use std::io;
 use std::collections::HashMap;
 
@@ -7,13 +12,18 @@ fn main() {
 
     loop {
         let mut input = String::new();
-        match io::stdin().read_line(&mut input) {
+        let result = io::stdin().read_line(&mut input);
+        match result {
             Ok(0) => break,
             Ok(_) => {
-                let count = counts.entry(input.to_string()).or_insert(0);
+                let key = input.to_string();
+                let count = counts.entry(key).or_insert(0);
                 *count += 1;
             }
-            Err(_) => break,
+            Err(msg) => {
+                println!("ERROR: {}", msg);
+                break;
+            }
         }
     }
     for (key, value) in counts.iter() {
