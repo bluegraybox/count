@@ -10,10 +10,9 @@ fn main() {
 
     loop {
         let mut input = String::new();
-        let result = io::stdin().read_line(&mut input);
-        match result {
+        match io::stdin().read_line(&mut input) {
             Ok(0) => break,
-            Ok(_) => {
+            Ok(_bytes_read) => {
                 let key = input.to_string();
                 let count = counts.entry(key).or_insert(0);
                 *count += 1;
